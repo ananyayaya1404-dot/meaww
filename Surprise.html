@@ -1,0 +1,2391 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>For Kuchupuchu ♡</title>
+
+<style>
+
+/* =========================================================
+   EVERYTHING BASIC
+========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    overflow: hidden;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    color: #713d54;
+
+    background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,.8) 0 3px, transparent 4px),
+        radial-gradient(circle at 80% 60%, rgba(255,255,255,.6) 0 3px, transparent 4px),
+        linear-gradient(
+            135deg,
+            #ffd6e5,
+            #ffeaf1,
+            #ffd9e7,
+            #fff0f5
+        );
+
+    background-size:
+        100px 100px,
+        130px 130px,
+        100% 100%;
+}
+
+
+/* =========================================================
+   VINTAGE PAPER TEXTURE
+========================================================= */
+
+body::before {
+    content: "";
+
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 500;
+
+    opacity: .18;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            rgba(90,40,55,.04) 0px,
+            rgba(90,40,55,.04) 1px,
+            transparent 1px,
+            transparent 4px
+        );
+}
+
+
+/* =========================================================
+   SLIDES
+========================================================= */
+
+.slide {
+    width: 100%;
+    height: 100vh;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+
+    padding: 25px;
+
+    overflow-y: auto;
+}
+
+.slide.active {
+    display: flex;
+
+    animation: pageAppear .8s ease;
+}
+
+@keyframes pageAppear {
+
+    from {
+        opacity: 0;
+        transform: scale(.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* =========================================================
+   FLOWERS / DECORATIONS
+========================================================= */
+
+.flower {
+    position: absolute;
+
+    font-size: 35px;
+
+    opacity: .75;
+
+    pointer-events: none;
+
+    z-index: 1;
+
+    animation: flowerMove 4s ease-in-out infinite;
+}
+
+.flower.one {
+    top: 6%;
+    left: 5%;
+}
+
+.flower.two {
+    top: 9%;
+    right: 6%;
+    animation-delay: 1s;
+}
+
+.flower.three {
+    bottom: 8%;
+    left: 6%;
+    animation-delay: 1.5s;
+}
+
+.flower.four {
+    bottom: 7%;
+    right: 7%;
+    animation-delay: 2s;
+}
+
+.flower.five {
+    top: 48%;
+    left: 2%;
+    animation-delay: .5s;
+}
+
+.flower.six {
+    top: 45%;
+    right: 2%;
+    animation-delay: 2.5s;
+}
+
+@keyframes flowerMove {
+
+    0%,100% {
+        transform: translateY(0) rotate(-5deg);
+    }
+
+    50% {
+        transform: translateY(-9px) rotate(5deg);
+    }
+}
+
+
+/* =========================================================
+   SMALL FLOATING HEARTS
+========================================================= */
+
+.mini-heart {
+    position: absolute;
+
+    color: #e86891;
+
+    font-size: 22px;
+
+    animation: floatHeart 3s ease-in-out infinite;
+
+    pointer-events: none;
+}
+
+@keyframes floatHeart {
+
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+
+/* =========================================================
+   COMMON BUTTON
+========================================================= */
+
+.bubble-button {
+
+    border: 3px solid #f19abb;
+
+    background: #ff82aa;
+
+    color: white;
+
+    padding: 16px 34px;
+
+    border-radius: 100px;
+
+    font-family: Georgia, serif;
+
+    font-size: 1.08rem;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 7px 0 #d9688f,
+        0 12px 20px rgba(160,60,95,.16);
+
+    transition: .25s ease;
+}
+
+.bubble-button:hover {
+
+    transform: translateY(-5px) scale(1.05);
+
+    background: #ff6f9e;
+}
+
+.bubble-button:active {
+
+    transform: translateY(3px);
+
+    box-shadow: 0 3px 0 #d9688f;
+}
+
+.buttons {
+
+    display: flex;
+
+    gap: 20px;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+}
+
+.no-button {
+
+    background: #fff0f5;
+
+    color: #d1537e;
+
+    box-shadow:
+        0 7px 0 #dfa0b6,
+        0 12px 20px rgba(160,60,95,.12);
+}
+
+
+/* =========================================================
+   PAGE 1
+========================================================= */
+
+.first-card {
+
+    width: 94%;
+    max-width: 1200px;
+
+    min-height: 650px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 55px;
+
+    padding: 45px;
+
+    position: relative;
+
+    z-index: 5;
+
+    background: rgba(255,248,251,.78);
+
+    border: 3px solid #f0a2bb;
+
+    border-radius: 38px;
+
+    box-shadow:
+        0 25px 60px rgba(120,45,75,.18),
+        inset 0 0 40px rgba(255,255,255,.9);
+}
+
+
+/* CAT */
+
+.first-cat {
+
+    width: 43%;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+}
+
+.first-cat img {
+
+    width: min(100%, 470px);
+
+    max-height: 570px;
+
+    object-fit: contain;
+
+    filter:
+        drop-shadow(10px 14px 6px rgba(100,40,65,.15));
+
+    animation: catFloat 3s ease-in-out infinite;
+}
+
+@keyframes catFloat {
+
+    0%,100% {
+        transform: translateY(0) rotate(-1deg);
+    }
+
+    50% {
+        transform: translateY(-11px) rotate(1deg);
+    }
+}
+
+
+/* TEXT */
+
+.first-text {
+
+    width: 57%;
+
+    text-align: center;
+}
+
+.small-label {
+
+    font-size: 1rem;
+
+    letter-spacing: 4px;
+
+    color: #b34f76;
+
+    text-transform: uppercase;
+
+    margin-bottom: 18px;
+}
+
+.big-title {
+
+    font-size: clamp(3rem, 7vw, 6.5rem);
+
+    line-height: .91;
+
+    color: #d94e82;
+
+    text-shadow:
+        2px 2px white,
+        5px 5px #f4a5bf;
+
+    margin-bottom: 25px;
+}
+
+.first-subtitle {
+
+    font-size: 1.25rem;
+
+    line-height: 1.7;
+
+    color: #875068;
+
+    margin-bottom: 30px;
+}
+
+
+/* =========================================================
+   PAGE 2 — NO
+========================================================= */
+
+.no-card {
+
+    width: 94%;
+
+    max-width: 1100px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 50px;
+
+    padding: 45px;
+
+    background: rgba(255,247,250,.8);
+
+    border: 3px solid #efa0b9;
+
+    border-radius: 38px;
+
+    box-shadow:
+        0 25px 55px rgba(120,45,75,.18);
+
+    position: relative;
+
+    z-index: 5;
+}
+
+.gun-cat {
+
+    width: 43%;
+
+    display: flex;
+
+    justify-content: center;
+}
+
+.gun-cat img {
+
+    width: min(100%, 400px);
+
+    max-height: 520px;
+
+    object-fit: contain;
+
+    filter:
+        drop-shadow(10px 14px 5px rgba(100,40,65,.15));
+
+    animation: angryCat .6s infinite alternate;
+}
+
+@keyframes angryCat {
+
+    from {
+        transform: rotate(-2deg);
+    }
+
+    to {
+        transform: rotate(2deg);
+    }
+}
+
+.no-text {
+
+    width: 57%;
+
+    text-align: center;
+}
+
+.how-dare {
+
+    font-size: clamp(3rem, 7vw, 6rem);
+
+    line-height: .9;
+
+    color: #d93770;
+
+    text-shadow:
+        2px 2px white,
+        5px 5px #f1a1bd;
+
+    animation: shake .5s infinite alternate;
+
+    margin-bottom: 25px;
+}
+
+@keyframes shake {
+
+    from {
+        transform: rotate(-2deg);
+    }
+
+    to {
+        transform: rotate(2deg);
+    }
+}
+
+.no-message {
+
+    font-size: 1.2rem;
+
+    line-height: 1.8;
+
+    margin-bottom: 30px;
+}
+
+
+/* =========================================================
+   PAGE 3 — LETTER
+========================================================= */
+
+.letter-card {
+
+    width: 94%;
+
+    max-width: 920px;
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    position: relative;
+
+    z-index: 5;
+
+    padding: 50px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fffaf3,
+            #fff4e9
+        );
+
+    border: 2px solid #dca77f;
+
+    border-radius: 8px;
+
+    box-shadow:
+        0 25px 50px rgba(100,55,40,.2),
+        inset 0 0 30px rgba(160,90,50,.08);
+
+    transform: rotate(-.5deg);
+}
+
+
+/* Vintage corner decorations */
+
+.letter-card::before {
+
+    content: "♡  ❀  ♡  ❀  ♡";
+
+    display: block;
+
+    text-align: center;
+
+    color: #c8788d;
+
+    font-size: 20px;
+
+    letter-spacing: 8px;
+
+    margin-bottom: 15px;
+}
+
+.letter-card::after {
+
+    content: "♡";
+
+    position: absolute;
+
+    right: 25px;
+
+    top: 20px;
+
+    color: #d57c96;
+
+    font-size: 35px;
+}
+
+.letter-title {
+
+    text-align: center;
+
+    font-family: "Brush Script MT", cursive;
+
+    font-size: clamp(3rem, 6vw, 5rem);
+
+    color: #a85a68;
+
+    margin-bottom: 25px;
+}
+
+.letter-paper {
+
+    color: #68494a;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 1.02rem;
+
+    line-height: 1.9;
+
+    text-align: left;
+}
+
+.letter-paper p {
+
+    margin-bottom: 18px;
+}
+
+.type-line {
+
+    opacity: 0;
+}
+
+.type-line.visible {
+
+    opacity: 1;
+}
+
+.signature {
+
+    text-align: right;
+
+    color: #a65370;
+
+    font-weight: bold;
+
+    margin-top: 25px;
+}
+
+
+/* =========================================================
+   PAGE 4 — LITTLE THINGS
+========================================================= */
+
+.little-card {
+
+    width: 94%;
+
+    max-width: 1000px;
+
+    min-height: 600px;
+
+    padding: 45px;
+
+    position: relative;
+
+    z-index: 5;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            #fff6fa 0px,
+            #fff6fa 39px,
+            #f6cbd8 40px
+        );
+
+    border: 3px solid #eda2ba;
+
+    border-radius: 25px;
+
+    box-shadow:
+        0 20px 50px rgba(120,45,75,.18);
+}
+
+.little-heading {
+
+    text-align: center;
+
+    font-family:
+        "Brush Script MT",
+        cursive;
+
+    font-size: clamp(3rem, 6vw, 5rem);
+
+    color: #d45180;
+
+    margin-bottom: 35px;
+}
+
+.reasons {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 22px;
+}
+
+.reason {
+
+    background: rgba(255,255,255,.82);
+
+    border: 2px solid #efb0c4;
+
+    border-radius: 18px;
+
+    padding: 25px;
+
+    text-align: center;
+
+    box-shadow:
+        4px 5px 0 rgba(220,120,150,.12);
+
+    transition: .25s;
+}
+
+.reason:hover {
+
+    transform:
+        translateY(-6px)
+        rotate(1deg);
+}
+
+.reason .emoji {
+
+    font-size: 38px;
+
+    margin-bottom: 10px;
+}
+
+.reason h3 {
+
+    color: #ca537b;
+
+    margin-bottom: 8px;
+
+    font-size: 1.2rem;
+}
+
+.reason p {
+
+    line-height: 1.6;
+
+    color: #805064;
+}
+
+
+/* =========================================================
+   PAGE 5 — PHOTOBOOTH
+========================================================= */
+
+.photo-page {
+
+    width: 96%;
+
+    max-width: 1200px;
+
+    min-height: 650px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 50px;
+
+    padding: 40px;
+
+    position: relative;
+
+    z-index: 5;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,249,251,.92),
+            rgba(255,239,246,.9)
+        );
+
+    border: 3px solid #eea2bb;
+
+    border-radius: 35px;
+
+    box-shadow:
+        0 25px 60px rgba(120,45,75,.2);
+}
+
+
+/* BIG PHOTO */
+
+.photo-zone {
+
+    width: 62%;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    position: relative;
+}
+
+
+/*
+   This deliberately does NOT crop your photobooth.png.
+   Your entire 4-photo collage stays visible.
+*/
+
+.photobooth-frame {
+
+    position: relative;
+
+    padding: 18px 18px 50px 18px;
+
+    background: #fff;
+
+    box-shadow:
+        8px 12px 0 #e39ab3,
+        0 20px 40px rgba(80,35,55,.25);
+
+    transform: rotate(-2deg);
+
+    transition: .4s ease;
+
+    max-width: 650px;
+
+    width: 100%;
+}
+
+.photobooth-frame:hover {
+
+    transform:
+        rotate(0deg)
+        scale(1.03);
+}
+
+.photobooth-frame img {
+
+    width: 100%;
+
+    max-height: 600px;
+
+    object-fit: contain;
+
+    display: block;
+
+    background: #fdf6f8;
+}
+
+
+/* fake tape */
+
+.tape {
+
+    position: absolute;
+
+    width: 115px;
+
+    height: 32px;
+
+    background:
+        rgba(255,194,211,.8);
+
+    top: -17px;
+
+    box-shadow:
+        0 2px 5px rgba(100,50,70,.1);
+}
+
+.tape.left {
+
+    left: 35px;
+
+    transform: rotate(-8deg);
+}
+
+.tape.right {
+
+    right: 35px;
+
+    transform: rotate(8deg);
+}
+
+
+/* PHOTO SIDE TEXT */
+
+.photo-caption {
+
+    width: 38%;
+
+    text-align: center;
+}
+
+.photo-caption h1 {
+
+    font-family:
+        "Brush Script MT",
+        cursive;
+
+    font-size: clamp(3rem, 6vw, 5rem);
+
+    color: #d44e7c;
+
+    line-height: 1;
+
+    margin-bottom: 20px;
+}
+
+.photo-caption p {
+
+    font-size: 1.15rem;
+
+    line-height: 1.8;
+
+    color: #805066;
+}
+
+
+/* =========================================================
+   PAGE 6 — CUTE INTERMISSION
+========================================================= */
+
+.intermission {
+
+    width: 90%;
+
+    max-width: 850px;
+
+    padding: 55px;
+
+    position: relative;
+
+    z-index: 5;
+
+    text-align: center;
+
+    background:
+        rgba(255,248,251,.86);
+
+    border:
+        3px dashed #ed9fb8;
+
+    border-radius: 30px;
+
+    box-shadow:
+        0 20px 50px rgba(120,45,75,.16);
+}
+
+.intermission h1 {
+
+    font-family:
+        "Brush Script MT",
+        cursive;
+
+    font-size: clamp(3.5rem, 7vw, 6rem);
+
+    color: #d84d80;
+
+    margin-bottom: 15px;
+}
+
+.intermission p {
+
+    font-size: 1.25rem;
+
+    line-height: 1.8;
+
+    color: #805069;
+
+    margin-bottom: 25px;
+}
+
+.intermission-cat {
+
+    width: 230px;
+
+    max-width: 60%;
+
+    animation: catFloat 3s infinite ease-in-out;
+}
+
+
+/* =========================================================
+   PAGE 7 — FINAL
+========================================================= */
+
+.final-card {
+
+    width: 94%;
+
+    max-width: 1050px;
+
+    min-height: 650px;
+
+    position: relative;
+
+    z-index: 5;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 50px;
+
+    padding: 45px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #fff5f9,
+            #ffdce9
+        );
+
+    border:
+        4px solid #f1a0bb;
+
+    border-radius: 40px;
+
+    box-shadow:
+        0 25px 70px rgba(120,45,75,.22);
+}
+
+.final-cat {
+
+    width: 40%;
+
+    display: flex;
+
+    justify-content: center;
+}
+
+.final-cat img {
+
+    width: min(100%, 360px);
+
+    max-height: 500px;
+
+    object-fit: contain;
+
+    filter:
+        drop-shadow(10px 15px 5px rgba(100,40,65,.15));
+
+    animation: catFloat 3s infinite ease-in-out;
+}
+
+.final-text {
+
+    width: 60%;
+
+    text-align: center;
+}
+
+.final-text h1 {
+
+    font-family:
+        "Brush Script MT",
+        cursive;
+
+    font-size: clamp(3.5rem, 7vw, 6.5rem);
+
+    line-height: .9;
+
+    color: #d74678;
+
+    text-shadow:
+        2px 2px white,
+        5px 5px #f3a2bc;
+
+    margin-bottom: 25px;
+}
+
+.final-text p {
+
+    font-size: 1.2rem;
+
+    line-height: 1.8;
+
+    color: #7e4c63;
+
+    margin-bottom: 15px;
+}
+
+.final-heart {
+
+    font-size: 55px;
+
+    margin-top: 15px;
+
+    animation: heartBeat 1.2s infinite;
+}
+
+@keyframes heartBeat {
+
+    0%,100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.25);
+    }
+}
+
+
+/* =========================================================
+   FALLING HEARTS
+========================================================= */
+
+.heart {
+
+    position: fixed;
+
+    top: -50px;
+
+    z-index: 400;
+
+    pointer-events: none;
+
+    animation:
+        heartFall linear forwards;
+}
+
+@keyframes heartFall {
+
+    0% {
+
+        transform:
+            translateY(-50px)
+            rotate(0deg);
+
+        opacity: 1;
+    }
+
+    100% {
+
+        transform:
+            translateY(110vh)
+            rotate(360deg);
+
+        opacity: 0;
+    }
+}
+
+
+/* =========================================================
+   CONFETTI
+========================================================= */
+
+.confetti {
+
+    position: fixed;
+
+    top: -20px;
+
+    width: 10px;
+
+    height: 15px;
+
+    z-index: 390;
+
+    pointer-events: none;
+
+    animation:
+        confettiFall linear forwards;
+}
+
+@keyframes confettiFall {
+
+    0% {
+
+        transform:
+            translateY(-20px)
+            rotate(0deg);
+
+        opacity: 1;
+    }
+
+    100% {
+
+        transform:
+            translateY(110vh)
+            rotate(720deg);
+
+        opacity: 0;
+    }
+}
+
+
+/* =========================================================
+   MUSIC BUTTON
+========================================================= */
+
+.music-button {
+
+    position: fixed;
+
+    right: 20px;
+
+    bottom: 20px;
+
+    z-index: 600;
+
+    width: 55px;
+
+    height: 55px;
+
+    border-radius: 50%;
+
+    border: 2px solid #ef9db8;
+
+    background: rgba(255,248,251,.94);
+
+    color: #c94e78;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 6px 18px rgba(100,40,65,.18);
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 850px) {
+
+    body {
+        overflow-y: auto;
+    }
+
+    .slide {
+        min-height: 100vh;
+
+        height: auto;
+
+        padding: 15px;
+    }
+
+    .first-card,
+    .no-card,
+    .photo-page,
+    .final-card {
+
+        flex-direction: column;
+
+        gap: 20px;
+
+        padding: 25px;
+    }
+
+    .first-cat,
+    .first-text,
+    .gun-cat,
+    .no-text,
+    .photo-zone,
+    .photo-caption,
+    .final-cat,
+    .final-text {
+
+        width: 100%;
+    }
+
+    .first-cat img {
+
+        width: 240px;
+
+        max-height: 280px;
+    }
+
+    .big-title {
+
+        font-size: 3.2rem;
+    }
+
+    .gun-cat img {
+
+        width: 220px;
+
+        max-height: 270px;
+    }
+
+    .how-dare {
+
+        font-size: 3.4rem;
+    }
+
+    .letter-card {
+
+        padding: 30px;
+
+        max-height: 90vh;
+    }
+
+    .letter-paper {
+
+        font-size: .9rem;
+    }
+
+    .reasons {
+
+        grid-template-columns: 1fr;
+    }
+
+    .little-card {
+
+        max-height: 90vh;
+
+        overflow-y: auto;
+
+        padding: 25px;
+    }
+
+    .photobooth-frame {
+
+        width: 100%;
+
+        padding-bottom: 35px;
+    }
+
+    .photobooth-frame img {
+
+        max-height: 55vh;
+    }
+
+    .photo-caption h1 {
+
+        font-size: 3.5rem;
+    }
+
+    .final-cat img {
+
+        width: 220px;
+
+        max-height: 280px;
+    }
+
+    .final-text h1 {
+
+        font-size: 3.7rem;
+    }
+
+}
+
+
+/* =========================================================
+   EXTRA SMALL PHONES
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .first-card {
+
+        padding: 20px;
+    }
+
+    .big-title {
+
+        font-size: 2.6rem;
+    }
+
+    .bubble-button {
+
+        padding: 13px 25px;
+
+        font-size: 1rem;
+    }
+
+    .letter-card {
+
+        padding: 22px;
+    }
+
+    .letter-paper {
+
+        line-height: 1.7;
+    }
+
+    .little-heading {
+
+        font-size: 3rem;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     MUSIC
+========================================================= -->
+
+<audio id="music" loop>
+    <source src="withu.mp3" type="audio/mpeg">
+</audio>
+
+<button
+    class="music-button"
+    id="musicButton"
+    onclick="toggleMusic()">
+    🎵
+</button>
+
+
+<!-- =========================================================
+     PAGE 1
+========================================================= -->
+
+<section class="slide active" id="page1">
+
+    <div class="flower one">🌷</div>
+    <div class="flower two">🌸</div>
+    <div class="flower three">🌷</div>
+    <div class="flower four">🌼</div>
+    <div class="flower five">🌷</div>
+    <div class="flower six">🌸</div>
+
+    <div class="mini-heart" style="top:15%;left:32%;">♡</div>
+    <div class="mini-heart" style="top:25%;right:25%;">♥</div>
+    <div class="mini-heart" style="bottom:20%;left:38%;">♡</div>
+
+
+    <div class="first-card">
+
+
+        <!-- CAT WITH TULIPS -->
+
+        <div class="first-cat">
+
+            <img
+                src="CatwithTulips.png"
+                alt="Cat with tulips">
+
+        </div>
+
+
+        <!-- TEXT -->
+
+        <div class="first-text">
+
+            <div class="small-label">
+                a tiny surprise for you ♡
+            </div>
+
+            <h1 class="big-title">
+
+                I HAVE A<br>
+                SURPRISE<br>
+                FOR YOU...
+
+            </h1>
+
+            <p class="first-subtitle">
+
+                wanna see it? 🥺💗
+
+            </p>
+
+
+            <div class="buttons">
+
+                <button
+                    class="bubble-button"
+                    onclick="showLetter()">
+
+                    YESSS ♡
+
+                </button>
+
+                <button
+                    class="bubble-button no-button"
+                    onclick="showNo()">
+
+                    NO 😭
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     PAGE 2 — NO
+========================================================= -->
+
+<section class="slide" id="pageNo">
+
+    <div class="flower one">🌷</div>
+    <div class="flower two">🌸</div>
+    <div class="flower three">🌷</div>
+    <div class="flower four">🌼</div>
+
+
+    <div class="no-card">
+
+
+        <div class="gun-cat">
+
+            <img
+                src="catwithgun.png"
+                alt="Angry cat">
+
+        </div>
+
+
+        <div class="no-text">
+
+            <h1 class="how-dare">
+
+                HOWW<br>
+                DARE YOU 😭
+
+            </h1>
+
+
+            <p class="no-message">
+
+                You really looked at my cute little
+                surprise and said NO??? 😭💔
+
+                <br><br>
+
+                Think again, kuchupuchu.
+
+            </p>
+
+
+            <button
+                class="bubble-button"
+                onclick="showLetter()">
+
+                okay mam.. YESS!! 💗
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     PAGE 3 — LETTER
+========================================================= -->
+
+<section class="slide" id="pageLetter">
+
+    <div class="flower one">🌷</div>
+    <div class="flower two">🌸</div>
+    <div class="flower three">🌷</div>
+    <div class="flower four">🌼</div>
+
+
+    <div class="letter-card">
+
+        <h1 class="letter-title">
+            A Little Letter For You ♡
+        </h1>
+
+
+        <div class="letter-paper" id="letterText">
+
+<div style="color: red; font-size: 28px; font-weight: bold; text-align: center; margin: 10px 0 25px;">
+    PURA PADHO CHUP CHAP ITNE PYAAR SE LIKHA HAI!!! MAARUNGI BOHTTT 😭❤️
+</div>
+            <p class="type-line">
+                OYE KUCHUPUCHU, 💗
+            </p>
+
+
+            <p class="type-line">
+                I don't really know how to put everything I feel
+                into words, but I wanted to make you something
+                instead...but
+                ye chotu sa surprise is PHOR YOU!!!
+(pura code maine khudd se kiya hai thodi help leke..Pura html coding krke banaya hai koi online prompt wagera noi hai hehehehehe)
+            </p>
+
+
+            <p class="type-line">
+                you YES YOUU!! I LOVEEE YOU BOHT BOHT ZADAAAA
+                u are the bestest person in daa worllddd babyy boyy
+            </p>
+
+
+            <p class="type-line">
+                I love all the little moments we have together
+                the random bakk bakkss, cute cute pyare pyare moments,
+                the laughs, and all the memories we have made.
+                (grammatical errors mat nikalna maarungi boht
+            </p>
+
+
+            <p class="type-line">
+                Even the smallest moments with you somehow become
+                my favourite one...meawww
+            </p>
+
+
+            <p class="type-line">
+                Sooo... I made this tiny little website for you
+                because apparently just saying "I love you a lot"
+                thoda boring ho gaya hehehe toh iss way me ilobee you
+                bolungi meawww.😭💕
+            </p>
+
+
+            <p class="type-line">
+                I hope this makes you smile even a little bit,
+                because making this made me smile a LOT heheheh
+                i hope this made your day a bit better&lt;3
+                dw pure din yahi nahi kiya padhai bhi ki hai maineee!!
+                heheheh I LOVEE YOU BOHT ZADA
+            </p>
+
+
+            <p class="type-line signature">
+                With lots and lots of love&lt;33<br>
+                from ANNI PANNI CHAMELI CHAMPAK LAL CHAURASIYAA!!!
+            </p>
+
+
+        </div>
+
+
+        <br>
+
+
+        <button
+            class="bubble-button"
+            onclick="showReasons()">
+
+            okaii now continue ♡
+
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     PAGE 4 — THINGS I LOVE
+========================================================= -->
+
+<section class="slide" id="pageReasons">
+
+    <div class="flower one">🌷</div>
+    <div class="flower two">🌸</div>
+    <div class="flower three">🌷</div>
+    <div class="flower four">🌼</div>
+
+
+    <div class="little-card">
+
+        <h1 class="little-heading">
+            little things i love about you ♡
+        </h1>
+
+
+        <div class="reasons">
+
+
+            <div class="reason">
+
+                <div class="emoji">💗</div>
+
+                <h3>our bakk bakks</h3>
+
+                <p>
+                    Even your random bakk bakks somehow
+                    becomes my favourite conversation meaw meawwww
+                </p>
+
+            </div>
+
+
+            <div class="reason">
+
+                <div class="emoji">😭</div>
+
+                <h3>ABT YOU!</h3>
+
+                <p>
+                    there are thousands of things i love abt you
+                    your smell your eyes your lips your face your voice!! arghhhh everythinggg
+                </p>
+
+            </div>
+
+
+            <div class="reason">
+
+                <div class="emoji">🫶</div>
+
+                <h3>The little moments of us</h3>
+
+                <p>
+                    The tiny memories that might not look
+                    imp somehow become the best ones!!!
+                </p>
+
+            </div>
+
+
+            <div class="reason">
+
+                <div class="emoji">🌷</div>
+
+                <h3>Just... you</h3>
+
+                <p>
+                   
+                    I just really, really love you.
+                    more than you could ever know..<33
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+        <br>
+
+
+        <div style="text-align:center; margin-top:25px;">
+
+            <button
+                class="bubble-button"
+                onclick="showPhoto()">
+
+                waittt there's something else 📸 khikikiki
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     PAGE 5 — PHOTOBOOTH
+========================================================= -->
+
+<section class="slide" id="pagePhoto">
+
+    <div class="flower one">🌷</div>
+    <div class="flower two">🌸</div>
+    <div class="flower three">🌷</div>
+    <div class="flower four">🌼</div>
+
+
+    <div class="photo-page">
+
+
+        <!-- LARGE PHOTO -->
+
+        <div class="photo-zone">
+
+            <div class="photobooth-frame">
+
+                <div class="tape left"></div>
+                <div class="tape right"></div>
+
+
+                <img
+                    src="photobooth.png"
+                    alt="Our photobooth pictures">
+
+            </div>
+
+        </div>
+
+
+        <!-- TEXT -->
+
+        <div class="photo-caption">
+
+            <h1>
+                our little<br>
+                moments ♡
+            </h1>
+
+            <p>
+                Look at usssss 😭💗
+            </p>
+
+            <p>
+                 tiny pictures, but
+                very big amount
+                of memories.
+            </p>
+
+            <p>
+                we look so perfect togetherr yaarr ARGHHHHHH.
+            </p>
+
+
+            <br>
+
+
+            <button
+                class="bubble-button"
+                onclick="showIntermission()">
+
+                one more thing!! khikiki... 👀
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     PAGE 6 — INTERMISSION
+========================================================= -->
+
+<section class="slide" id="pageIntermission">
+
+    <div class="flower one">🌷</div>
+    <div class="flower two">🌸</div>
+    <div class="flower three">🌷</div>
+    <div class="flower four">🌼</div>
+    <div class="flower five">🌷</div>
+    <div class="flower six">🌸</div>
+
+
+    <div class="intermission">
+
+        <h1>
+            meawwwiezzz ♡
+        </h1>
+
+
+        <p>
+            agar u'hve made it this far...
+            congratulations!!!, you are officially
+            stuck with me. 😭💗 ABB SHAADI KRNI PADEGI
+        </p>
+
+
+        <p>
+            And yes, maine padhai bhi ki hai free hoke 
+            banaya hai ye aapke liye faaltu kaam karne ki jagah 
+            *this is not any type of online prompt ye sabb HTML coding se banaya hai maine!!)
+            MUWAHH!!!!!
+        </p>
+
+
+        <img
+            class="intermission-cat"
+            src="CatwithTulips.png"
+            alt="Cute tulip cat">
+
+
+        <br><br>
+
+
+        <button
+            class="bubble-button"
+            onclick="showFinal()">
+
+            okaaii now THE LAST ONE pakka 🎀
+
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     PAGE 7 — FINAL
+========================================================= -->
+
+<section class="slide" id="pageFinal">
+
+    <div class="flower one">🌷</div>
+    <div class="flower two">🌸</div>
+    <div class="flower three">🌷</div>
+    <div class="flower four">🌼</div>
+    <div class="flower five">🌷</div>
+    <div class="flower six">🌸</div>
+
+
+    <div class="final-card">
+
+
+        <!-- CAT -->
+
+        <div class="final-cat">
+
+            <img
+                src="meaw.png"
+                alt="Cute meaw cat">
+
+        </div>
+
+
+        <!-- MESSAGE -->
+
+        <div class="final-text">
+
+            <h1>
+                I HOPE<br>
+                YOU LIKE IT ♡ meaw meaw
+            </h1>
+
+
+            <p>
+                You are very special to me. 💗 SAMJHE?!
+            </p>
+
+
+            <p>
+                I love you a lot.
+            </p>
+
+
+            <p>
+                Just know that you are
+                very, very important to me!!!
+            </p>
+
+
+            <p>
+                More than you probably realise... 🥺
+            </p>
+
+
+            <div class="final-heart">
+                💗
+            </div>
+
+
+            <p>
+                okay byieee now before I make
+                another 50 pages khikikiki 😭
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script>
+
+
+/* =========================================================
+   MUSIC
+========================================================= */
+
+const music =
+    document.getElementById("music");
+
+const musicButton =
+    document.getElementById("musicButton");
+
+let musicStarted = false;
+
+
+function startMusic() {
+
+    if (!musicStarted) {
+
+        music.volume = 0.35;
+
+        music.play()
+        .then(() => {
+
+            musicStarted = true;
+
+            musicButton.innerHTML = "🎵";
+
+        })
+        .catch(() => {
+
+            /*
+              Some browsers don't allow music
+              until the user clicks something.
+              The music button still works.
+            */
+
+        });
+    }
+}
+
+
+function toggleMusic() {
+
+    if (music.paused) {
+
+        music.play();
+
+        musicButton.innerHTML = "🎵";
+
+    } else {
+
+        music.pause();
+
+        musicButton.innerHTML = "🔇";
+
+    }
+}
+
+
+/* =========================================================
+   SLIDE SWITCHING
+========================================================= */
+
+function hideAllSlides() {
+
+    document
+        .querySelectorAll(".slide")
+        .forEach(slide => {
+
+            slide.classList.remove("active");
+
+        });
+}
+
+
+function showNo() {
+
+    startMusic();
+
+    hideAllSlides();
+
+    document
+        .getElementById("pageNo")
+        .classList.add("active");
+
+    heartExplosion();
+}
+
+
+function showLetter() {
+
+    startMusic();
+
+    hideAllSlides();
+
+    document
+        .getElementById("pageLetter")
+        .classList.add("active");
+
+    typeLetter();
+
+    heartExplosion();
+}
+
+
+function showReasons() {
+
+    hideAllSlides();
+
+    document
+        .getElementById("pageReasons")
+        .classList.add("active");
+
+    heartExplosion();
+}
+
+
+function showPhoto() {
+
+    hideAllSlides();
+
+    document
+        .getElementById("pagePhoto")
+        .classList.add("active");
+
+    heartExplosion();
+}
+
+
+function showIntermission() {
+
+    hideAllSlides();
+
+    document
+        .getElementById("pageIntermission")
+        .classList.add("active");
+
+    heartExplosion();
+}
+
+
+function showFinal() {
+
+    hideAllSlides();
+
+    document
+        .getElementById("pageFinal")
+        .classList.add("active");
+
+    startHearts();
+
+    heartExplosion();
+
+    confettiBlast();
+}
+
+
+/* =========================================================
+   TYPEWRITER LETTER
+========================================================= */
+
+let letterAlreadyTyped = false;
+
+
+function typeLetter() {
+
+    if (letterAlreadyTyped) return;
+
+    letterAlreadyTyped = true;
+
+    const lines =
+        document.querySelectorAll(".type-line");
+
+
+    lines.forEach(line => {
+
+        line.classList.remove("visible");
+
+    });
+
+
+    let current = 0;
+
+
+    function showNextLine() {
+
+        if (current >= lines.length) return;
+
+
+        const line = lines[current];
+
+
+        line.classList.add("visible");
+
+
+        current++;
+
+
+        setTimeout(
+            showNextLine,
+            650
+        );
+
+    }
+
+
+    showNextLine();
+}
+
+
+/* =========================================================
+   HEARTS
+========================================================= */
+
+const heartTypes = [
+    "♡",
+    "♥",
+    "💗",
+    "💕",
+    "💖",
+    "💞",
+    "💓"
+];
+
+
+function createHeart() {
+
+    const heart =
+        document.createElement("div");
+
+
+    heart.className =
+        "heart";
+
+
+    heart.innerHTML =
+        heartTypes[
+            Math.floor(
+                Math.random() *
+                heartTypes.length
+            )
+        ];
+
+
+    heart.style.left =
+        Math.random() * 100 + "vw";
+
+
+    heart.style.fontSize =
+        (15 + Math.random() * 30) + "px";
+
+
+    heart.style.color =
+        [
+            "#e96792",
+            "#f583a8",
+            "#d94f80",
+            "#ffabc5",
+            "#ec7199"
+        ][
+            Math.floor(Math.random() * 5)
+        ];
+
+
+    heart.style.animationDuration =
+        (3 + Math.random() * 5) + "s";
+
+
+    document.body.appendChild(heart);
+
+
+    setTimeout(() => {
+
+        heart.remove();
+
+    }, 9000);
+}
+
+
+let heartsRunning = false;
+
+
+function startHearts() {
+
+    if (heartsRunning) return;
+
+    heartsRunning = true;
+
+
+    for (let i = 0; i < 40; i++) {
+
+        setTimeout(
+            createHeart,
+            i * 100
+        );
+
+    }
+
+
+    setInterval(
+        createHeart,
+        350
+    );
+}
+
+
+function heartExplosion() {
+
+    for (let i = 0; i < 25; i++) {
+
+        setTimeout(
+            createHeart,
+            i * 50
+        );
+
+    }
+}
+
+
+/* =========================================================
+   CONFETTI
+========================================================= */
+
+function confettiBlast() {
+
+    const colors = [
+        "#ff6f9e",
+        "#ff9fba",
+        "#e65a88",
+        "#ffd0df",
+        "#f39ab8",
+        "#ffffff"
+    ];
+
+
+    for (let i = 0; i < 100; i++) {
+
+        const piece =
+            document.createElement("div");
+
+
+        piece.className =
+            "confetti";
+
+
+        piece.style.left =
+            Math.random() * 100 + "vw";
+
+
+        piece.style.background =
+            colors[
+                Math.floor(
+                    Math.random() *
+                    colors.length
+                )
+            ];
+
+
+        piece.style.animationDuration =
+            (2 + Math.random() * 4) + "s";
+
+
+        piece.style.animationDelay =
+            Math.random() + "s";
+
+
+        piece.style.width =
+            (5 + Math.random() * 10) + "px";
+
+
+        piece.style.height =
+            (7 + Math.random() * 15) + "px";
+
+
+        document.body.appendChild(piece);
+
+
+        setTimeout(() => {
+
+            piece.remove();
+
+        }, 6000);
+
+    }
+}
+
+
+/* =========================================================
+   FIRST USER CLICK STARTS MUSIC
+========================================================= */
+
+document.addEventListener(
+    "click",
+    startMusic,
+    { once: true }
+);
+
+
+</script>
+
+</body>
+</html>
+

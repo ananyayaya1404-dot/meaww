@@ -1,0 +1,2274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>@Surprise - Copy</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,600;6..96,700;6..96,800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=DM+Mono:wght@300;400;500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Oswald:wght@300;400;500;600;700&family=Special+Elite&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================================================
+   ROOT
+========================================================= */
+
+:root{
+    --cream:#f5e8d7;
+    --paper:#f8eee1;
+    --pink:#d98b9e;
+    --lightpink:#efb7c3;
+    --dust:#c47d91;
+    --wine:#651f32;
+    --deep:#250d17;
+    --black:#100b0d;
+    --red:#ff173b;
+    --gold:#c9a56a;
+    --muted:#a8877f;
+    --shadow:rgba(30,5,12,.45);
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    min-height:100vh;
+    background:
+        radial-gradient(circle at 20% 10%,rgba(225,151,168,.18),transparent 25%),
+        radial-gradient(circle at 80% 90%,rgba(115,30,53,.18),transparent 28%),
+        #130c0f;
+    color:var(--cream);
+    overflow-x:hidden;
+    font-family:"Cormorant Garamond",serif;
+}
+
+/* =========================================================
+   FILM / VINTAGE OVERLAY
+========================================================= */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:9990;
+    opacity:.13;
+    background-image:
+        repeating-linear-gradient(
+            0deg,
+            transparent 0px,
+            transparent 2px,
+            rgba(255,255,255,.035) 3px
+        );
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:9989;
+    box-shadow:
+        inset 0 0 150px rgba(0,0,0,.85),
+        inset 0 0 45px rgba(90,20,35,.25);
+}
+
+/* =========================================================
+   FLOATING DECOR
+========================================================= */
+
+.decor-layer{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    overflow:hidden;
+    z-index:2;
+}
+
+.float{
+    position:absolute;
+    user-select:none;
+    opacity:.65;
+    animation:
+        floatAround var(--time,8s) ease-in-out infinite alternate,
+        fadeFloat 4s ease-in-out infinite;
+}
+
+.float.heart{
+    color:#ed9caf;
+    font-family:serif;
+    font-size:28px;
+    text-shadow:
+        0 0 7px #ed9caf,
+        0 0 20px rgba(237,156,175,.7);
+}
+
+.float.star{
+    color:#f4d8a5;
+    font-size:18px;
+    text-shadow:
+        0 0 8px #f4d8a5,
+        0 0 20px rgba(244,216,165,.6);
+}
+
+.float.flower{
+    color:#e5a4b5;
+    font-size:24px;
+}
+
+@keyframes floatAround{
+    0%{
+        transform:translate3d(0,0,0) rotate(-8deg);
+    }
+    50%{
+        transform:translate3d(18px,-35px,0) rotate(7deg);
+    }
+    100%{
+        transform:translate3d(-12px,-70px,0) rotate(-4deg);
+    }
+}
+
+@keyframes fadeFloat{
+    0%,100%{opacity:.25;}
+    50%{opacity:.8;}
+}
+
+/* =========================================================
+   MUSIC
+========================================================= */
+
+.music-button{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    z-index:9000;
+
+    border:1px solid rgba(239,183,195,.75);
+    background:rgba(30,10,18,.9);
+    color:#f5d7de;
+
+    padding:11px 18px;
+
+    font-family:"DM Mono",monospace;
+    font-size:11px;
+    letter-spacing:1px;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 0 15px rgba(218,139,158,.2),
+        inset 0 0 15px rgba(218,139,158,.08);
+
+    transition:.3s;
+}
+
+.music-button:hover{
+    background:#692337;
+    color:white;
+    transform:translateY(-3px);
+    box-shadow:
+        0 0 25px rgba(218,139,158,.45);
+}
+
+/* =========================================================
+   PAGE SYSTEM
+========================================================= */
+
+.page{
+    min-height:100vh;
+    width:100%;
+    display:none;
+
+    position:relative;
+    z-index:5;
+
+    padding:
+        70px
+        clamp(20px,6vw,100px)
+        100px;
+
+    align-items:center;
+    justify-content:center;
+}
+
+.page.active{
+    display:flex;
+    animation:pageIn .8s ease both;
+}
+
+@keyframes pageIn{
+    from{
+        opacity:0;
+        transform:translateY(18px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.page-inner{
+    width:min(1180px,100%);
+    margin:auto;
+    position:relative;
+}
+
+/* =========================================================
+   GENERAL TYPOGRAPHY
+========================================================= */
+
+.kicker{
+    font-family:"DM Mono",monospace;
+    text-transform:uppercase;
+    letter-spacing:4px;
+    font-size:11px;
+    color:#cda9a5;
+    margin-bottom:18px;
+}
+
+.glow{
+    text-shadow:
+        0 0 4px rgba(255,213,221,.5),
+        0 0 14px rgba(235,148,170,.35),
+        0 0 30px rgba(235,148,170,.18);
+}
+
+.small-note{
+    color:#c7aaa4;
+    font-size:16px;
+    line-height:1.7;
+}
+
+/* =========================================================
+   BUTTONS — OLD CUTE STYLE
+========================================================= */
+
+.btn-row{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:14px;
+    margin-top:30px;
+}
+
+.old-btn{
+    appearance:none;
+    border:1px solid rgba(255,207,217,.85);
+
+    background:
+        linear-gradient(
+            135deg,
+            #e6a0b2,
+            #c8748d
+        );
+
+    color:#2a0d16;
+
+    padding:13px 27px;
+
+    border-radius:999px;
+
+    font-family:"Cormorant Garamond",serif;
+    font-size:18px;
+    font-weight:700;
+
+    letter-spacing:.7px;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 6px 0 rgba(80,17,34,.5),
+        0 0 20px rgba(220,135,158,.22);
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease,
+        filter .2s ease;
+}
+
+.old-btn:hover{
+    transform:translateY(-4px) scale(1.035);
+    filter:brightness(1.08);
+    box-shadow:
+        0 9px 0 rgba(80,17,34,.45),
+        0 0 28px rgba(229,148,171,.55);
+}
+
+.old-btn:active{
+    transform:translateY(2px);
+    box-shadow:
+        0 3px 0 rgba(80,17,34,.5),
+        0 0 15px rgba(229,148,171,.3);
+}
+
+.btn-dark{
+    background:#32131e;
+    color:#f5d9df;
+    border-color:#9b5369;
+}
+
+/* =========================================================
+   PAGE 1 — PIN
+========================================================= */
+
+#page1{
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(111,32,53,.28),
+            transparent 55%
+        );
+}
+
+.pin-box{
+    text-align:center;
+    max-width:720px;
+    margin:auto;
+}
+
+.secret-title{
+    font-family:"Bodoni Moda",serif;
+    font-size:clamp(60px,11vw,140px);
+    line-height:.9;
+    letter-spacing:-5px;
+    color:#f3d8d5;
+
+    text-shadow:
+        0 0 6px rgba(255,220,225,.7),
+        0 0 20px rgba(221,129,153,.6),
+        0 0 60px rgba(221,129,153,.25);
+
+    margin-bottom:25px;
+}
+
+.secret-sub{
+    font-family:"DM Mono",monospace;
+    font-size:12px;
+    letter-spacing:4px;
+    color:#bfa39e;
+    text-transform:uppercase;
+}
+
+.pin-input{
+    width:190px;
+    margin:35px auto 5px;
+
+    background:rgba(255,255,255,.04);
+    border:1px solid #9d6371;
+
+    padding:14px;
+
+    color:#f7dfe3;
+    text-align:center;
+
+    font-family:"DM Mono",monospace;
+    font-size:20px;
+    letter-spacing:7px;
+
+    outline:none;
+
+    box-shadow:
+        0 0 25px rgba(203,105,133,.1),
+        inset 0 0 20px rgba(203,105,133,.06);
+}
+
+.pin-input:focus{
+    border-color:#efacbd;
+    box-shadow:
+        0 0 20px rgba(239,172,189,.25);
+}
+
+.pin-error{
+    min-height:22px;
+    margin-top:10px;
+    color:#ff6f89;
+    font-family:"DM Mono",monospace;
+    font-size:11px;
+}
+
+/* =========================================================
+   PAGE 2 — HELLO
+========================================================= */
+
+.split-layout{
+    display:grid;
+    grid-template-columns:minmax(280px, .9fr) minmax(300px, 1.1fr);
+    gap:clamp(35px,7vw,100px);
+    align-items:center;
+}
+
+.image-side{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.vintage-frame{
+    position:relative;
+    padding:13px;
+
+    background:#ead7c2;
+
+    box-shadow:
+        0 25px 60px rgba(0,0,0,.45),
+        0 0 35px rgba(225,139,162,.14);
+
+    transform:rotate(-2deg);
+
+    max-width:100%;
+}
+
+.vintage-frame::before{
+    content:"";
+    position:absolute;
+    inset:5px;
+    border:1px solid rgba(75,31,39,.25);
+    pointer-events:none;
+}
+
+.vintage-frame img{
+    display:block;
+    width:100%;
+    height:auto;
+    max-width:100%;
+
+    object-fit:contain;
+}
+
+.cat-frame{
+    width:min(430px,100%);
+}
+
+.cat-frame img{
+    aspect-ratio:4 / 5;
+    object-fit:contain;
+    background:#e6d4c0;
+}
+
+.text-side{
+    position:relative;
+}
+
+.hello-title{
+    font-family:"Bodoni Moda",serif;
+    font-size:clamp(58px,8vw,105px);
+    line-height:.82;
+    color:#f3d6db;
+    letter-spacing:-4px;
+
+    text-shadow:
+        0 0 6px rgba(255,215,225,.8),
+        0 0 18px rgba(225,120,151,.7),
+        0 0 45px rgba(225,120,151,.25);
+
+    margin-bottom:25px;
+}
+
+.hello-title span{
+    color:#dc91a6;
+    font-style:italic;
+}
+
+.hello-copy{
+    max-width:500px;
+    font-size:24px;
+    line-height:1.35;
+    color:#e6cfd0;
+}
+
+.hello-copy em{
+    color:#eea8b9;
+}
+
+.question{
+    margin-top:22px;
+    font-family:"DM Mono",monospace;
+    font-size:12px;
+    letter-spacing:3px;
+    color:#bda09c;
+    text-transform:uppercase;
+}
+
+/* =========================================================
+   NO PAGE
+========================================================= */
+
+.no-layout{
+    display:grid;
+    grid-template-columns:minmax(270px,.8fr) minmax(300px,1.2fr);
+    gap:60px;
+    align-items:center;
+}
+
+.no-frame{
+    width:min(410px,100%);
+}
+
+.no-frame img{
+    width:100%;
+    height:auto;
+    display:block;
+    object-fit:contain;
+}
+
+.no-title{
+    font-family:"Bodoni Moda",serif;
+    font-size:clamp(48px,7vw,90px);
+    line-height:.95;
+    color:#f0d2d7;
+
+    text-shadow:
+        0 0 8px rgba(255,220,225,.7),
+        0 0 25px rgba(255,65,92,.5);
+}
+
+/* =========================================================
+   LETTER
+========================================================= */
+
+.letter-page{
+    align-items:flex-start;
+    padding-top:80px;
+}
+
+.letter-wrap{
+    width:min(1000px,100%);
+    margin:auto;
+}
+
+.letter-heading{
+    text-align:center;
+
+    font-family:"Bodoni Moda",serif;
+    font-size:clamp(45px,7vw,90px);
+    line-height:1;
+
+    color:#f3d7d9;
+
+    text-shadow:
+        0 0 7px rgba(255,225,228,.7),
+        0 0 22px rgba(225,123,148,.5),
+        0 0 50px rgba(225,123,148,.22);
+
+    margin-bottom:10px;
+}
+
+/* =========================================================
+   BIG REAL WARNING
+========================================================= */
+
+.danger-warning{
+    display:block;
+    width:max-content;
+    max-width:100%;
+
+    margin:22px auto 28px;
+
+    padding:15px 30px;
+
+    color:#ff173b;
+
+    border:2px solid #ff173b;
+
+    background:
+        repeating-linear-gradient(
+            -45deg,
+            rgba(255,0,30,.12) 0 8px,
+            transparent 8px 16px
+        ),
+        rgba(40,0,4,.88);
+
+    font-family:"Oswald",sans-serif;
+
+    font-size:clamp(17px,2.2vw,28px);
+    font-weight:700;
+
+    letter-spacing:3px;
+    text-align:center;
+
+    text-shadow:
+        0 0 4px #ff173b,
+        0 0 12px #ff173b,
+        0 0 28px rgba(255,20,50,.9),
+        0 0 55px rgba(255,20,50,.35);
+
+    box-shadow:
+        0 0 8px #ff173b,
+        0 0 25px rgba(255,20,50,.55),
+        0 0 60px rgba(255,20,50,.2),
+        inset 0 0 18px rgba(255,20,50,.15);
+
+    animation:warningGlow 1.35s ease-in-out infinite;
+}
+
+@keyframes warningGlow{
+    0%,100%{
+        opacity:.82;
+        transform:scale(1);
+        box-shadow:
+            0 0 8px #ff173b,
+            0 0 25px rgba(255,20,50,.45),
+            inset 0 0 18px rgba(255,20,50,.12);
+    }
+
+    50%{
+        opacity:1;
+        transform:scale(1.025);
+        box-shadow:
+            0 0 12px #ff173b,
+            0 0 35px rgba(255,20,50,.8),
+            0 0 70px rgba(255,20,50,.3),
+            inset 0 0 25px rgba(255,20,50,.22);
+    }
+}
+
+/* =========================================================
+   PAPER
+========================================================= */
+
+.paper{
+    position:relative;
+
+    width:100%;
+
+    background:
+        linear-gradient(
+            rgba(255,247,234,.97),
+            rgba(247,233,214,.97)
+        );
+
+    color:#341b21;
+
+    padding:
+        clamp(30px,6vw,70px)
+        clamp(25px,7vw,80px);
+
+    border:1px solid rgba(119,65,68,.4);
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.5),
+        0 0 45px rgba(211,135,153,.1);
+
+    overflow:visible;
+}
+
+.paper::before{
+    content:"";
+    position:absolute;
+    inset:14px;
+    border:1px solid rgba(116,72,73,.25);
+    pointer-events:none;
+}
+
+.paper::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    opacity:.14;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            transparent 0 4px,
+            rgba(100,70,60,.2) 5px
+        );
+}
+
+.letter-text{
+    position:relative;
+    z-index:2;
+
+    font-family:"Libre Baskerville",serif;
+
+    font-size:clamp(16px,1.55vw,20px);
+    line-height:1.9;
+
+    white-space:normal;
+}
+
+.letter-text p{
+    margin-bottom:23px;
+}
+
+.signature{
+    margin-top:35px;
+    text-align:right;
+
+    font-family:"Cormorant Garamond",serif;
+    font-size:22px;
+    line-height:1.5;
+
+    color:#651f32;
+}
+
+/* =========================================================
+   PHOTO PAGE
+========================================================= */
+
+.photo-page{
+    align-items:flex-start;
+}
+
+.photo-layout{
+    display:grid;
+
+    grid-template-columns:
+        minmax(320px,1.15fr)
+        minmax(280px,.85fr);
+
+    gap:clamp(40px,7vw,90px);
+
+    align-items:center;
+}
+
+/* IMPORTANT:
+   PHOTO IS NEVER CROPPED
+*/
+
+.photo-frame{
+    width:100%;
+    max-width:720px;
+
+    padding:16px;
+
+    background:#eee0cb;
+
+    border:1px solid rgba(194,153,111,.65);
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.5),
+        0 0 35px rgba(227,158,177,.15);
+
+    transform:rotate(-1.2deg);
+}
+
+.photo-frame img{
+    display:block;
+
+    width:100%;
+    height:auto;
+
+    max-width:100%;
+
+    object-fit:contain !important;
+
+    background:#d8c2a8;
+}
+
+/* NO fixed height here = NO CROPPING */
+
+.photo-title{
+    font-family:"Bodoni Moda",serif;
+    font-size:clamp(45px,6vw,78px);
+    line-height:.95;
+
+    color:#f2d7db;
+
+    text-shadow:
+        0 0 7px rgba(255,220,228,.65),
+        0 0 25px rgba(220,123,149,.5);
+
+    margin-bottom:24px;
+}
+
+.photo-copy{
+    font-size:23px;
+    line-height:1.45;
+    color:#e3c9ce;
+}
+
+.photo-copy p{
+    margin-bottom:18px;
+}
+
+/* =========================================================
+   LITTLE THINGS
+========================================================= */
+
+.little-page{
+    align-items:flex-start;
+}
+
+.little-title{
+    text-align:center;
+
+    font-family:"Bodoni Moda",serif;
+    font-size:clamp(45px,6vw,80px);
+
+    line-height:1;
+
+    color:#f2d6da;
+
+    text-shadow:
+        0 0 7px rgba(255,220,225,.65),
+        0 0 25px rgba(222,123,148,.45);
+
+    margin-bottom:50px;
+}
+
+.little-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,minmax(0,1fr));
+
+    gap:22px;
+}
+
+.little-card{
+    position:relative;
+
+    min-height:250px;
+
+    padding:32px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(86,27,45,.65),
+            rgba(28,11,17,.82)
+        );
+
+    border:1px solid rgba(224,151,169,.35);
+
+    box-shadow:
+        0 20px 45px rgba(0,0,0,.25),
+        inset 0 0 30px rgba(220,130,153,.04);
+
+    transition:.35s;
+}
+
+.little-card:hover{
+    transform:translateY(-7px) rotate(.5deg);
+
+    border-color:rgba(238,174,190,.7);
+
+    box-shadow:
+        0 25px 60px rgba(0,0,0,.4),
+        0 0 30px rgba(218,135,158,.16);
+}
+
+.card-number{
+    font-family:"DM Mono",monospace;
+    font-size:10px;
+    letter-spacing:3px;
+    color:#a9828a;
+}
+
+.little-card h3{
+    font-family:"Bodoni Moda",serif;
+    font-size:31px;
+    margin:18px 0 14px;
+
+    color:#efc8d0;
+
+    text-shadow:
+        0 0 10px rgba(226,139,160,.4);
+}
+
+.little-card p{
+    color:#dfc7ca;
+    font-size:19px;
+    line-height:1.5;
+}
+
+.card-emoji{
+    position:absolute;
+    right:25px;
+    bottom:20px;
+    font-size:30px;
+    filter:drop-shadow(0 0 10px rgba(238,166,184,.5));
+}
+
+/* =========================================================
+   UNIVERSE PAGE
+========================================================= */
+
+.universe-page{
+    background:
+        radial-gradient(
+            circle at 50% 40%,
+            rgba(91,34,80,.35),
+            transparent 50%
+        );
+}
+
+.universe{
+    text-align:center;
+    max-width:900px;
+    margin:auto;
+}
+
+.universe-title{
+    font-family:"Bodoni Moda",serif;
+
+    font-size:clamp(55px,8vw,110px);
+
+    line-height:.9;
+
+    color:#ead7eb;
+
+    text-shadow:
+        0 0 6px #ead7eb,
+        0 0 20px rgba(203,139,221,.75),
+        0 0 55px rgba(203,139,221,.35);
+
+    margin-bottom:35px;
+}
+
+.stars-box{
+    position:relative;
+
+    min-height:390px;
+
+    padding:50px;
+
+    border:1px solid rgba(217,170,229,.25);
+
+    background:
+        radial-gradient(circle at 20% 30%,rgba(255,255,255,.12) 0 1px,transparent 2px),
+        radial-gradient(circle at 70% 20%,rgba(255,255,255,.1) 0 1px,transparent 2px),
+        radial-gradient(circle at 40% 70%,rgba(255,255,255,.12) 0 1px,transparent 2px),
+        linear-gradient(
+            145deg,
+            rgba(28,17,40,.9),
+            rgba(12,10,20,.96)
+        );
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.5),
+        0 0 50px rgba(163,108,191,.12);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.universe-copy{
+    max-width:680px;
+
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:clamp(22px,3vw,32px);
+
+    line-height:1.55;
+
+    color:#e7d9e8;
+
+    text-shadow:
+        0 0 10px rgba(224,196,231,.25);
+}
+
+/* =========================================================
+   FINAL
+========================================================= */
+
+.final-page{
+    text-align:center;
+}
+
+.final-image-frame{
+    width:min(430px,90vw);
+
+    margin:0 auto 35px;
+
+    padding:14px;
+
+    background:#ead8c4;
+
+    box-shadow:
+        0 30px 70px rgba(0,0,0,.5),
+        0 0 45px rgba(227,145,166,.16);
+
+    transform:rotate(1deg);
+}
+
+.final-image-frame img{
+    display:block;
+    width:100%;
+    height:auto;
+    object-fit:contain;
+}
+
+.final-title{
+    font-family:"Bodoni Moda",serif;
+
+    font-size:clamp(55px,8vw,110px);
+
+    line-height:.9;
+
+    color:#f2d9de;
+
+    text-shadow:
+        0 0 7px rgba(255,225,230,.85),
+        0 0 20px rgba(230,130,155,.65),
+        0 0 50px rgba(230,130,155,.35);
+
+    margin-bottom:24px;
+}
+
+.final-sub{
+    font-family:"DM Mono",monospace;
+    font-size:12px;
+    letter-spacing:4px;
+    color:#bfa4a4;
+}
+
+/* =========================================================
+   CURTAIN TRANSITION
+========================================================= */
+
+.curtain{
+    position:fixed;
+    inset:0;
+
+    background:#210d16;
+
+    z-index:9999;
+
+    transform:translateY(100%);
+
+    pointer-events:none;
+}
+
+.curtain.go{
+    animation:curtain .85s ease;
+}
+
+@keyframes curtain{
+    0%{
+        transform:translateY(100%);
+    }
+    45%{
+        transform:translateY(0);
+    }
+    55%{
+        transform:translateY(0);
+    }
+    100%{
+        transform:translateY(-100%);
+    }
+}
+
+/* =========================================================
+   FLOATING HEART BURST
+========================================================= */
+
+.burst-heart{
+    position:fixed;
+    z-index:9998;
+
+    pointer-events:none;
+
+    font-size:20px;
+
+    animation:
+        burstUp 1.4s ease forwards;
+}
+
+@keyframes burstUp{
+    from{
+        opacity:1;
+        transform:
+            translate(-50%,-50%)
+            scale(.5)
+            rotate(0);
+    }
+
+    to{
+        opacity:0;
+
+        transform:
+            translate(
+                calc(-50% + var(--x)),
+                calc(-50% + var(--y))
+            )
+            scale(1.5)
+            rotate(var(--r));
+    }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:800px){
+
+    .page{
+        padding:
+            60px
+            20px
+            90px;
+    }
+
+    .split-layout,
+    .no-layout,
+    .photo-layout{
+        grid-template-columns:1fr;
+        gap:40px;
+    }
+
+    .image-side{
+        order:1;
+    }
+
+    .text-side{
+        order:2;
+        text-align:center;
+    }
+
+    .hello-title{
+        font-size:clamp(55px,16vw,90px);
+    }
+
+    .hello-copy{
+        margin:auto;
+        font-size:21px;
+    }
+
+    .cat-frame{
+        width:min(360px,92vw);
+    }
+
+    .no-layout{
+        text-align:center;
+    }
+
+    .no-title{
+        font-size:clamp(45px,13vw,75px);
+    }
+
+    .photo-frame{
+        max-width:100%;
+        transform:none;
+    }
+
+    .photo-title{
+        font-size:clamp(48px,13vw,70px);
+    }
+
+    .photo-copy{
+        font-size:21px;
+    }
+
+    .little-grid{
+        grid-template-columns:1fr;
+    }
+
+    .paper{
+        padding:
+            38px
+            24px;
+    }
+
+    .paper::before{
+        inset:8px;
+    }
+
+    .letter-text{
+        font-size:15px;
+        line-height:1.8;
+    }
+
+    .signature{
+        font-size:19px;
+        text-align:center;
+    }
+
+    .danger-warning{
+        width:100%;
+        font-size:16px;
+        letter-spacing:1.5px;
+        padding:13px 10px;
+    }
+
+    .stars-box{
+        padding:30px 20px;
+        min-height:350px;
+    }
+
+    .music-button{
+        right:12px;
+        bottom:12px;
+    }
+}
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media(max-width:430px){
+
+    .page{
+        padding-left:15px;
+        padding-right:15px;
+    }
+
+    .old-btn{
+        font-size:16px;
+        padding:12px 22px;
+    }
+
+    .secret-title{
+        letter-spacing:-3px;
+    }
+
+    .paper{
+        padding:
+            32px
+            20px;
+    }
+
+    .letter-text{
+        font-size:14px;
+    }
+
+    .little-card{
+        padding:25px;
+    }
+
+    .little-card h3{
+        font-size:27px;
+    }
+
+    .little-card p{
+        font-size:17px;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+<!-- =======================================================
+     MUSIC
+======================================================= -->
+
+<audio id="music" loop preload="auto">
+    <source src="withu.mp3" type="audio/mpeg">
+</audio>
+
+<button class="music-button" id="musicButton" onclick="toggleMusic()">
+    ♫ MUSIC OFF
+</button>
+
+
+<!-- =======================================================
+     FLOATING DECORATION
+======================================================= -->
+
+<div class="decor-layer">
+
+    <div class="float heart" style="left:6%;top:15%;--time:7s;">♡</div>
+    <div class="float heart" style="left:14%;top:75%;--time:9s;">♥</div>
+    <div class="float heart" style="left:91%;top:23%;--time:8s;">♡</div>
+    <div class="float heart" style="left:84%;top:78%;--time:10s;">♥</div>
+
+    <div class="float heart" style="left:48%;top:7%;--time:8s;">♡</div>
+    <div class="float heart" style="left:56%;top:91%;--time:7s;">♥</div>
+
+    <div class="float star" style="left:22%;top:30%;--time:6s;">✦</div>
+    <div class="float star" style="left:78%;top:41%;--time:8s;">✧</div>
+    <div class="float star" style="left:32%;top:88%;--time:7s;">✦</div>
+    <div class="float star" style="left:69%;top:12%;--time:9s;">✧</div>
+
+    <div class="float flower" style="left:4%;top:52%;--time:9s;">✿</div>
+    <div class="float flower" style="left:94%;top:59%;--time:7s;">❀</div>
+    <div class="float flower" style="left:72%;top:89%;--time:8s;">✿</div>
+
+</div>
+
+
+<div class="curtain" id="curtain"></div>
+
+
+<!-- =======================================================
+     PAGE 1 — PIN
+======================================================= -->
+
+<section class="page active" id="page1">
+
+    <div class="page-inner pin-box">
+
+        <div class="kicker">private archive / 001</div>
+
+        <h1 class="secret-title">
+            FOR YOU.
+        </h1>
+
+        <p class="secret-sub">
+            enter the tiny secret code
+        </p>
+
+        <input
+            class="pin-input"
+            id="pin"
+            type="password"
+            maxlength="3"
+            inputmode="numeric"
+            placeholder="•••"
+            onkeydown="if(event.key==='Enter') checkPin()"
+        >
+
+        <div class="pin-error" id="pinError"></div>
+
+        <div class="btn-row">
+
+            <button class="old-btn" onclick="checkPin()">
+                unlock ♡
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     PAGE 2 — HIEEE BABBBYYY
+======================================================= -->
+
+<section class="page" id="page2">
+
+    <div class="page-inner">
+
+        <div class="split-layout">
+
+            <div class="image-side">
+
+                <div class="vintage-frame cat-frame">
+
+                    <img
+                        src="CatwithTulips.png"
+                        alt="cat with tulips"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="text-side">
+
+                <div class="kicker">
+                    page 02 / look what i made
+                </div>
+
+                <h1 class="hello-title">
+                    HIEEE<br>
+                    <span>BABBBYYY</span>
+                </h1>
+
+                <div class="hello-copy">
+
+                    <p>
+                        I made a little something for you...
+                        but before you see it,
+                        <em>wanna see it?</em>
+                    </p>
+
+                </div>
+
+                <div class="question">
+                    choose wisely heheheheh
+                </div>
+
+                <div class="btn-row">
+
+                    <button
+                        class="old-btn"
+                        onclick="go(3)"
+                    >
+                        YESSS 💗
+                    </button>
+
+                    <button
+                        class="old-btn btn-dark"
+                        onclick="goNo()"
+                    >
+                        NO 😭
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     NO PAGE
+======================================================= -->
+
+<section class="page" id="noPage">
+
+    <div class="page-inner">
+
+        <div class="no-layout">
+
+            <div class="image-side">
+
+                <div class="vintage-frame no-frame">
+
+                    <img
+                        src="catwithgun.png"
+                        alt="angry cat"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="text-side">
+
+                <div class="kicker">
+                    ERROR / WRONG ANSWER
+                </div>
+
+                <h1 class="no-title glow">
+                    HOW DARE<br>
+                    YOU SAY NO.
+                </h1>
+
+                <p class="small-note" style="margin-top:25px;">
+                    wow. okay. rude.
+                    <br>
+                    try again, pagalu.
+                </p>
+
+                <div class="btn-row">
+
+                    <button
+                        class="old-btn"
+                        onclick="go(3)"
+                    >
+                        sorry madame... YESS!!
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     PAGE 3 — LETTER
+======================================================= -->
+
+<section class="page letter-page" id="page3">
+
+    <div class="letter-wrap">
+
+        <div class="kicker" style="text-align:center;">
+            personal correspondence / do not skip
+        </div>
+
+        <h1 class="letter-heading">
+            LETTER FOR YOU LOVE
+        </h1>
+
+        <div class="danger-warning">
+            ⚠ PURA PADHNA NAHI TOH BOHT MAARUNGI ⚠
+        </div>
+
+
+        <div class="paper">
+
+            <div class="letter-text">
+
+                <p>
+                    OYE KUCHUPUCHU, 💗
+                </p>
+
+                <p>
+                    I don't really know how to put everything I feel into words,
+                    but I wanted to make you something instead...but ye chotu sa
+                    surprise is PHOR YOU!!! (pura code maine khudd se kiya hai
+                    thodi help leke..Pura html coding krke banaya hai koi online
+                    prompt wagera noi hai hehehehehe)
+                </p>
+
+                <p>
+                    you YES YOUU!! I LOVEEE YOU BOHT BOHT ZADAAAA u are the bestest
+                    person in daa worllddd babyy boyy
+                </p>
+
+                <p>
+                    I love all the little moments we have together the random
+                    bakk bakkss, cute cute pyare pyare moments, the laughs,
+                    and all the memories we have made. (grammatical errors mat
+                    nikalna maarungi boht
+                </p>
+
+                <p>
+                    Even the smallest moments with you somehow become my favourite
+                    one...meawww
+                </p>
+
+                <p>
+                    Sooo... I made this tiny little website for you because
+                    apparently just saying "I love you a lot" thoda boring ho
+                    gaya hehehe toh iss way me ilobee you bolungi meawww.😭💕
+                </p>
+
+                <p>
+                    I hope this makes you smile even a little bit, because making
+                    this made me smile a LOT heheheh i hope this made your day a
+                    bit better&lt;3 dw pure din yahi nahi kiya padhai bhi ki hai
+                    maineee!! heheheh I LOVEE YOU BOHT ZADA
+                </p>
+
+                <p class="signature">
+                    <strong>
+                        With lots and lots of love&lt;33
+                    </strong>
+                    <br>
+                    <strong>
+                        from Anni Panni Chameli Champak Lal Chaurasiyaa!!!
+                    </strong>
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="btn-row">
+
+            <button
+                class="old-btn"
+                onclick="go(4)"
+            >
+                next page ♡
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     PAGE 4 — PHOTOBOOTH
+======================================================= -->
+
+<section class="page photo-page" id="page4">
+
+    <div class="page-inner">
+
+        <div class="photo-layout">
+
+            <!-- IMAGE LEFT -->
+
+            <div class="image-side">
+
+                <div class="photo-frame">
+
+                    <!--
+                        IMPORTANT:
+                        NO HEIGHT IS SET.
+                        IMAGE WILL SHOW IN FULL.
+                    -->
+
+                    <img
+                        src="photobooth.png"
+                        alt="our little moments"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- TEXT RIGHT -->
+
+            <div class="text-side">
+
+                <div class="kicker">
+                    photo booth / memories
+                </div>
+
+                <h1 class="photo-title">
+                    our little<br>
+                    moments
+                </h1>
+
+                <div class="photo-copy">
+
+                    <p>
+                        Look at usssss 😭💗
+                    </p>
+
+                    <p>
+                        tiny pictures, but very big amount
+                        of memories.
+                    </p>
+
+                    <p>
+                        we look so perfect togetherr yaarr
+                        ARGHHHHHH.
+                    </p>
+
+                </div>
+
+                <div class="btn-row">
+
+                    <button
+                        class="old-btn"
+                        onclick="go(5)"
+                    >
+                        keep going ♡
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     PAGE 5 — LITTLE THINGS
+======================================================= -->
+
+<section class="page little-page" id="page5">
+
+    <div class="page-inner">
+
+        <div class="kicker" style="text-align:center;">
+            catalogue of extremely important things
+        </div>
+
+        <h1 class="little-title">
+            little things i love abt you
+        </h1>
+
+
+        <div class="little-grid">
+
+
+            <div class="little-card">
+
+                <div class="card-number">
+                    01 / THE BAKK BAKKS
+                </div>
+
+                <h3>
+                    our bakk bakks
+                </h3>
+
+                <p>
+                    Even your random bakk bakks somehow becomes
+                    my favourite conversation meaw meawwww
+                </p>
+
+                <div class="card-emoji">
+                    😭
+                </div>
+
+            </div>
+
+
+            <div class="little-card">
+
+                <div class="card-number">
+                    02 / YOU
+                </div>
+
+                <h3>
+                    ABT YOU!
+                </h3>
+
+                <p>
+                    there are thousands of things i love abt you
+                    your smell your eyes your lips your face your
+                    voice!! arghhhh everythinggg
+                </p>
+
+                <div class="card-emoji">
+                    🫶
+                </div>
+
+            </div>
+
+
+            <div class="little-card">
+
+                <div class="card-number">
+                    03 / MEMORY ARCHIVE
+                </div>
+
+                <h3>
+                    The little moments of us
+                </h3>
+
+                <p>
+                    The tiny memories that might not look imp
+                    somehow become the best ones!!!
+                </p>
+
+                <div class="card-emoji">
+                    🌷
+                </div>
+
+            </div>
+
+
+            <div class="little-card">
+
+                <div class="card-number">
+                    04 / THE OBVIOUS ONE
+                </div>
+
+                <h3>
+                    Just... you
+                </h3>
+
+                <p>
+                    I just really, really love you.
+                    more than you could ever know.. &lt;33
+                </p>
+
+                <div class="card-emoji">
+                    💗
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="btn-row">
+
+            <button
+                class="old-btn"
+                onclick="go(6)"
+            >
+                one more thing... ✦
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     PAGE 6 — TINY UNIVERSE
+======================================================= -->
+
+<section class="page universe-page" id="page6">
+
+    <div class="page-inner universe">
+
+        <div class="kicker">
+            somewhere between all our memories
+        </div>
+
+        <h1 class="universe-title">
+            our tiny<br>
+            universe
+        </h1>
+
+
+        <div class="stars-box">
+
+            <div class="universe-copy">
+
+                <p>
+               if you reached till here congratulationss noww urr offically mine and abb shaadi krni padegi!!
+                    Out of all the people,
+                    all the places,
+                    all the random little moments
+                    that could have happened...
+                </p>
+
+                <br>
+
+                <p>
+                    somehow there is this tiny little
+                    universe that is just
+                    <strong>ours.</strong>
+                </p>
+
+                <br>
+
+                <p>
+                    And honestly,
+                    I think that's pretty special. ♡
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="btn-row">
+
+            <button
+                class="old-btn"
+                onclick="go(7)"
+            >
+                final page ♡
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     PAGE 7 — FINAL
+======================================================= -->
+
+<section class="page final-page" id="page7">
+
+    <div class="page-inner">
+
+        <div class="kicker">
+            end of the archive
+        </div>
+
+
+        <div class="final-image-frame">
+
+            <img
+                src="meaw.png"
+                alt="meaw"
+            >
+
+        </div>
+
+
+        <h1 class="final-title">
+            I HOPE<br>
+            YOU LOVE IT
+        </h1>
+
+        <p class="final-sub">
+            made out of pure love ♡
+        </p>
+
+
+        <div class="btn-row">
+
+            <button
+                class="old-btn"
+                onclick="burst();"
+            >
+                ♡ meaw ♡
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<script>
+
+/* =========================================================
+   MUSIC
+========================================================= */
+
+const music = document.getElementById("music");
+const musicButton = document.getElementById("musicButton");
+
+let musicStarted = false;
+
+
+function startMusic(){
+
+    music.volume = 0.72;
+
+    const promise = music.play();
+
+    if(promise !== undefined){
+
+        promise
+            .then(() => {
+
+                musicStarted = true;
+
+                musicButton.textContent =
+                    "♫ MUSIC ON";
+
+            })
+            .catch(() => {
+
+                musicButton.textContent =
+                    "♫ TAP FOR MUSIC";
+
+            });
+
+    }
+
+}
+
+
+function toggleMusic(){
+
+    if(music.paused){
+
+        music.play()
+            .then(() => {
+
+                musicStarted = true;
+                musicButton.textContent =
+                    "♫ MUSIC ON";
+
+            })
+            .catch(() => {
+
+                musicButton.textContent =
+                    "♫ TAP FOR MUSIC";
+
+            });
+
+    }else{
+
+        music.pause();
+
+        musicButton.textContent =
+            "♫ MUSIC OFF";
+
+    }
+
+}
+
+
+/* =========================================================
+   PIN
+========================================================= */
+
+function checkPin(){
+
+    const pin =
+        document.getElementById("pin").value.trim();
+
+    const error =
+        document.getElementById("pinError");
+
+
+    if(pin === "143"){
+
+        error.textContent = "";
+
+        startMusic();
+
+        burst();
+
+        go(2);
+
+    }else{
+
+        error.textContent =
+            "wrong code... try again hehe ♡";
+
+        document
+            .getElementById("pin")
+            .animate(
+                [
+                    {transform:"translateX(0)"},
+                    {transform:"translateX(-8px)"},
+                    {transform:"translateX(8px)"},
+                    {transform:"translateX(0)"}
+                ],
+                {
+                    duration:350
+                }
+            );
+
+    }
+
+}
+
+
+/* =========================================================
+   PAGE NAVIGATION
+========================================================= */
+
+function go(number){
+
+    const curtain =
+        document.getElementById("curtain");
+
+    curtain.classList.remove("go");
+
+    void curtain.offsetWidth;
+
+    curtain.classList.add("go");
+
+
+    setTimeout(() => {
+
+        document
+            .querySelectorAll(".page")
+            .forEach(page => {
+
+                page.classList.remove("active");
+
+            });
+
+
+        const target =
+            document.getElementById(
+                "page" + number
+            );
+
+        if(target){
+            target.classList.add("active");
+        }
+
+
+        window.scrollTo({
+            top:0,
+            behavior:"instant"
+        });
+
+    },420);
+
+}
+
+
+function goNo(){
+
+    const curtain =
+        document.getElementById("curtain");
+
+    curtain.classList.remove("go");
+
+    void curtain.offsetWidth;
+
+    curtain.classList.add("go");
+
+
+    setTimeout(() => {
+
+        document
+            .querySelectorAll(".page")
+            .forEach(page => {
+
+                page.classList.remove("active");
+
+            });
+
+        document
+            .getElementById("noPage")
+            .classList.add("active");
+
+        window.scrollTo({
+            top:0,
+            behavior:"instant"
+        });
+
+    },420);
+
+}
+
+
+/* =========================================================
+   HEART / SPARKLE BURST
+========================================================= */
+
+function burst(){
+
+    const symbols = [
+        "♡",
+        "♥",
+        "✦",
+        "✧",
+        "💗",
+        "✨",
+        "⋆"
+    ];
+
+    for(let i=0;i<28;i++){
+
+        const element =
+            document.createElement("div");
+
+        element.className =
+            "burst-heart";
+
+        element.textContent =
+            symbols[
+                Math.floor(
+                    Math.random()*symbols.length
+                )
+            ];
+
+        element.style.left =
+            (40 + Math.random()*20) + "%";
+
+        element.style.top =
+            (45 + Math.random()*15) + "%";
+
+        element.style.setProperty(
+            "--x",
+            ((Math.random()-.5)*650) + "px"
+        );
+
+        element.style.setProperty(
+            "--y",
+            ((Math.random()-.5)*550) + "px"
+        );
+
+        element.style.setProperty(
+            "--r",
+            ((Math.random()-.5)*160) + "deg"
+        );
+
+        document.body.appendChild(element);
+
+
+        setTimeout(() => {
+
+            element.remove();
+
+        },1500);
+
+    }
+
+}
+
+
+/* =========================================================
+   EXTRA CLICK SPARKLES
+========================================================= */
+
+document.addEventListener("click",function(e){
+
+    if(
+        e.target.tagName === "BUTTON" ||
+        e.target.tagName === "INPUT"
+    ){
+
+        return;
+
+    }
+
+
+    for(let i=0;i<4;i++){
+
+        const sparkle =
+            document.createElement("div");
+
+        sparkle.className =
+            "burst-heart";
+
+        sparkle.textContent =
+            Math.random() > .5 ? "✦" : "♡";
+
+        sparkle.style.left =
+            e.clientX + "px";
+
+        sparkle.style.top =
+            e.clientY + "px";
+
+        sparkle.style.setProperty(
+            "--x",
+            ((Math.random()-.5)*180) + "px"
+        );
+
+        sparkle.style.setProperty(
+            "--y",
+            ((Math.random()-.5)*180) + "px"
+        );
+
+        sparkle.style.setProperty(
+            "--r",
+            ((Math.random()-.5)*180) + "deg"
+        );
+
+        document.body.appendChild(sparkle);
+
+
+        setTimeout(() => {
+
+            sparkle.remove();
+
+        },1400);
+
+    }
+
+});
+
+
+/* =========================================================
+   ENTER KEY PIN
+========================================================= */
+
+document
+    .getElementById("pin")
+    .addEventListener(
+        "keydown",
+        function(event){
+
+            if(event.key === "Enter"){
+
+                checkPin();
+
+            }
+
+        }
+    );
+
+
+/* =========================================================
+   KEEP MUSIC BUTTON UPDATED
+========================================================= */
+
+music.addEventListener("play",function(){
+
+    musicButton.textContent =
+        "♫ MUSIC ON";
+
+});
+
+music.addEventListener("pause",function(){
+
+    musicButton.textContent =
+        "♫ MUSIC OFF";
+
+});
+
+</script>
+
+</body>
+</html>
